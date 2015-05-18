@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Washes</h1>
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <ul class = "nav nav-pills">
+      <li><h4>ORDENAR POR: </h4></li>
+      <li><a href="/washes?cliente=true">Customer</a></li>
+      <li><a href="/washes?vehiculo=true">Vehicle</a></li>
+      <li><a href="/washes?empleado=true">Employee</a></li>
+      <li><a href="/washes?fecha=true">Date</a></li>
+    </ul>  
+  </div>    
+</nav>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Vehicle</th>
+      <th>Employee</th>
+      <th>Customer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @washes.each do |wash| %>
+      <tr>
+        <td><%= wash.amount %></td>
+        <td><%= wash.date %></td>
+        <td><%= wash.vehicle.full_nameauto %></td>
+        <td><%= wash.employee.full_name %></td>
+        <td><%= wash.customer.full_name %></td>
+        <td><%= link_to 'Show', wash %></td>
+        <td><%= link_to 'Edit', edit_wash_path(wash) %></td>
+        <td><%= link_to 'Destroy', wash, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wash', new_wash_path %>
